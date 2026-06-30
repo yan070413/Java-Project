@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>编程论坛-首页</title>
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;font-family:微软雅黑;}
+        body {background:#f5f7fa;padding:30px;max-width:1250px;margin:0 auto;}
+        header {display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;}
+        h1 {color:#222;font-size:28px;}
+        .btn-publish {padding:10px 22px;background:#2563eb;color:#fff;border:none;border-radius:6px;text-decoration:none;}
+
+        .lang-nav {
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin-bottom:25px;
+            background:#fff;
+            padding:16px;
+            border-radius:10px;
+            box-shadow:0 2px 8px #0000000a;
+        }
+        .lang-nav-btn {
+            padding:9px 18px;
+            border-radius:6px;
+            border:none;
+            background:#f0f4f9;
+            color:#333;
+            cursor:pointer;
+            font-size:14px;
+            transition:0.2s;
+        }
+        .lang-nav-btn.active {
+            background:#2563eb;
+            color:#fff;
+        }
+
+        .main-study-box {
+            display:none;
+            gap:18px;
+            min-height:550px;
+            margin-bottom:50px;
+        }
+        .main-study-box.show {
+            display:flex;
+        }
+
+        .left-catalog {
+            width:220px;
+            background:#fff;
+            border-radius:10px;
+            box-shadow:0 2px 8px #0000000a;
+            padding:15px;
+            overflow-y:auto;
+            max-height:550px;
+        }
+        .catalog-title {
+            font-size:16px;
+            font-weight:bold;
+            color:#222;
+            padding-bottom:10px;
+            border-bottom:1px solid #eee;
+            margin-bottom:10px;
+        }
+        .catalog-item {
+            padding:8px 10px;
+            font-size:14px;
+            border-radius:5px;
+            cursor:pointer;
+            margin:3px 0;
+            color:#444;
+            transition:0.2s;
+        }
+        .catalog-item.active {
+            background:#2563eb;
+            color:#fff;
+        }
+
+        .right-content {
+            flex:1;
+            background:#fff;
+            border-radius:10px;
+            box-shadow:0 2px 8px #0000000a;
+            padding:30px;
+        }
+        .content-empty {
+            text-align:center;
+            color:#999;
+            font-size:16px;
+            padding:80px 0;
+        }
+        .content-panel {display:none;}
+        .content-panel.show {display:block;}
+
+        .empty-tip {
+            text-align:center;
+            padding:60px 0;
+            color:#777;
+            font-size:16px;
+            background:#fff;
+            border-radius:10px;
+            box-shadow:0 2px 8px #0000000a;
+        }
+        .other-post-area {
+            margin-top:60px;
+            padding-top:40px;
+            border-top:2px solid #e6e9f0;
+        }
+        .post-section-title {
+            font-size:24px;
+            color:#111;
+            font-weight:bold;
+            margin-bottom:22px;
+            padding-left:12px;
+            border-left:4px solid #2563eb;
+        }
+        .post-card {
+            background:#ffffff;
+            padding:26px 32px;
+            border-radius:8px;
+            box-shadow:0 1px 6px rgba(0,0,0,0.07);
+            margin-bottom:22px;
+            border:1px solid #eef1f8;
+        }
+        .post-title {
+            font-size:22px;
+            color:#151515;
+            font-weight:600;
+            margin-bottom:16px;
+        }
+        .post-content {
+            color:#3a3a3a;
+            font-size:16px;
+            line-height:1.8;
+            text-indent:2em;
+            text-align:left;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>学编程，习代码</h1>
+    <a href="/publishing.html" class="btn-publish">发布新帖子</a>
+</header>
+
+<div class="lang-nav">
+    <button class="lang-nav-btn active" onclick="switchLang('java')">Java</button>
+    <button class="lang-nav-btn" onclick="switchLang('c')">C语言</button>
+    <button class="lang-nav-btn" onclick="switchLang('cpp')">C++</button>
+    <button class="lang-nav-btn" onclick="switchLang('python')">Python</button>
+    <button class="lang-nav-btn" onclick="switchLang('js')">JS</button>
+    <button class="lang-nav-btn" onclick="switchLang('html')">HTML</button>
+    <button class="lang-nav-btn" onclick="switchLang('css')">CSS</button>
+    <button class="lang-nav-btn" onclick="switchLang('mysql')">MySQL</button>
+</div>
+
+<div class="main-study-box show" id="java">
+    <div class="left-catalog">
+        <div class="catalog-title">Java 知识点</div>
+        <div class="catalog-item active" onclick="switchCata('java','1')">环境搭建</div>
+        <div class="catalog-item" onclick="switchCata('java','2')">注释与规范</div>
+        <div class="catalog-item" onclick="switchCata('java','3')">变量与常量</div>
+        <div class="catalog-item" onclick="switchCata('java','4')">基本数据类型</div>
+        <div class="catalog-item" onclick="switchCata('java','5')">类型转换</div>
+        <div class="catalog-item" onclick="switchCata('java','6')">运算符</div>
+        <div class="catalog-item" onclick="switchCata('java','7')">分支结构</div>
+        <div class="catalog-item" onclick="switchCata('java','8')">循环结构</div>
+        <div class="catalog-item" onclick="switchCata('java','9')">数组</div>
+        <div class="catalog-item" onclick="switchCata('java','10')">方法</div>
+        <div class="catalog-item" onclick="switchCata('java','11')">重载</div>
+        <div class="catalog-item" onclick="switchCata('java','12')">面向对象</div>
+        <div class="catalog-item" onclick="switchCata('java','13')">封装</div>
+        <div class="catalog-item" onclick="switchCata('java','14')">继承</div>
+        <div class="catalog-item" onclick="switchCata('java','15')">多态</div>
+        <div class="catalog-item" onclick="switchCata('java','16')">抽象类与接口</div>
+        <div class="catalog-item" onclick="switchCata('java','17')">异常处理</div>
+        <div class="catalog-item" onclick="switchCata('java','18')">IO流</div>
+        <div class="catalog-item" onclick="switchCata('java','19')">多线程</div>
+        <div class="catalog-item" onclick="switchCata('java','20')">网络编程</div>
+    </div>
+    <div class="right-content">
+        <div class="content-panel show" id="java-1"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-2"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-3"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-4"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-5"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-6"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-7"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-8"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-9"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-10"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-11"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-12"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-13"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-14"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-15"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-16"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-17"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-18"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-19"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="java-20"><div class="content-empty">知识点待补充</div></div>
+    </div>
+</div>
+
+<div class="main-study-box" id="c">
+    <div class="left-catalog">
+        <div class="catalog-title">C语言知识点</div>
+        <div class="catalog-item active" onclick="switchCata('c','1')">环境与入门</div>
+        <div class="catalog-item" onclick="switchCata('c','2')">基础语法</div>
+        <div class="catalog-item" onclick="switchCata('c','3')">变量类型</div>
+        <div class="catalog-item" onclick="switchCata('c','4')">运算符</div>
+        <div class="catalog-item" onclick="switchCata('c','5')">流程控制</div>
+        <div class="catalog-item" onclick="switchCata('c','6')">函数</div>
+        <div class="catalog-item" onclick="switchCata('c','7')">数组字符串</div>
+        <div class="catalog-item" onclick="switchCata('c','8')">指针详解</div>
+        <div class="catalog-item" onclick="switchCata('c','9')">结构体</div>
+        <div class="catalog-item" onclick="switchCata('c','10')">内存管理</div>
+        <div class="catalog-item" onclick="switchCata('c','11')">文件操作</div>
+    </div>
+    <div class="right-content">
+        <div class="content-panel show" id="c-1"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="c-2"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="c-3"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="c-4"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="c-5"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="c-6"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="c-7"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="c-8"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="c-9"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="c-10"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="c-11"><div class="content-empty">知识点待补充</div></div>
+    </div>
+</div>
+
+<div class="main-study-box" id="cpp">
+    <div class="left-catalog">
+        <div class="catalog-title">C++知识点</div>
+        <div class="catalog-item active" onclick="switchCata('cpp','1')">C++入门</div>
+        <div class="catalog-item" onclick="switchCata('cpp','2')">基础语法</div>
+        <div class="catalog-item" onclick="switchCata('cpp','3')">函数重载</div>
+        <div class="catalog-item" onclick="switchCata('cpp','4')">类与对象</div>
+        <div class="catalog-item" onclick="switchCata('cpp','5')">构造析构</div>
+        <div class="catalog-item" onclick="switchCata('cpp','6')">封装继承多态</div>
+        <div class="catalog-item" onclick="switchCata('cpp','7')">虚函数</div>
+        <div class="catalog-item" onclick="switchCata('cpp','8')">运算符重载</div>
+        <div class="catalog-item" onclick="switchCata('cpp','9')">模板</div>
+        <div class="catalog-item" onclick="switchCata('cpp','10')">STL容器</div>
+        <div class="catalog-item" onclick="switchCata('cpp','11')">智能指针</div>
+    </div>
+    <div class="right-content">
+        <div class="content-panel show" id="cpp-1"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="cpp-2"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="cpp-3"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="cpp-4"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="cpp-5"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="cpp-6"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="cpp-7"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="cpp-8"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="cpp-9"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="cpp-10"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="cpp-11"><div class="content-empty">知识点待补充</div></div>
+    </div>
+</div>
+
+<div class="main-study-box" id="python">
+    <div class="left-catalog">
+        <div class="catalog-title">Python知识点</div>
+        <div class="catalog-item active" onclick="switchCata('python','1')">环境搭建</div>
+        <div class="catalog-item" onclick="switchCata('python','2')">基础语法</div>
+        <div class="catalog-item" onclick="switchCata('python','3')">数据结构</div>
+        <div class="catalog-item" onclick="switchCata('python','4')">条件循环</div>
+        <div class="catalog-item" onclick="switchCata('python','5')">函数</div>
+        <div class="catalog-item" onclick="switchCata('python','6')">装饰器</div>
+        <div class="catalog-item" onclick="switchCata('python','7')">文件操作</div>
+        <div class="catalog-item" onclick="switchCata('python','8')">异常处理</div>
+        <div class="catalog-item" onclick="switchCata('python','9')">面向对象</div>
+        <div class="catalog-item" onclick="switchCata('python','10')">爬虫基础</div>
+    </div>
+    <div class="right-content">
+        <div class="content-panel show" id="python-1"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="python-2"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="python-3"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="python-4"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="python-5"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="python-6"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="python-7"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="python-8"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="python-9"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="python-10"><div class="content-empty">知识点待补充</div></div>
+    </div>
+</div>
+
+<div class="main-study-box" id="js">
+    <div class="left-catalog">
+        <div class="catalog-title">JS知识点</div>
+        <div class="catalog-item active" onclick="switchCata('js','1')">JS入门</div>
+        <div class="catalog-item" onclick="switchCata('js','2')">变量数据类型</div>
+        <div class="catalog-item" onclick="switchCata('js','3')">流程控制</div>
+        <div class="catalog-item" onclick="switchCata('js','4')">函数</div>
+        <div class="catalog-item" onclick="switchCata('js','5')">数组对象</div>
+        <div class="catalog-item" onclick="switchCata('js','6')">DOM操作</div>
+        <div class="catalog-item" onclick="switchCata('js','7')">事件</div>
+    </div>
+    <div class="right-content">
+        <div class="content-panel show" id="js-1"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="js-2"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="js-3"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="js-4"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="js-5"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="js-6"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="js-7"><div class="content-empty">知识点待补充</div></div>
+    </div>
+</div>
+
+<div class="main-study-box" id="html">
+    <div class="left-catalog">
+        <div class="catalog-title">HTML知识点</div>
+        <div class="catalog-item active" onclick="switchCata('html','1')">基础结构</div>
+        <div class="catalog-item" onclick="switchCata('html','2')">文本标签</div>
+        <div class="catalog-item" onclick="switchCata('html','3')">列表表格</div>
+        <div class="catalog-item" onclick="switchCata('html','4')">表单</div>
+        <div class="catalog-item" onclick="switchCata('html','5')">多媒体</div>
+    </div>
+    <div class="right-content">
+        <div class="content-panel show" id="html-1"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="html-2"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="html-3"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="html-4"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="html-5"><div class="content-empty">知识点待补充</div></div>
+    </div>
+</div>
+
+<div class="main-study-box" id="css">
+    <div class="left-catalog">
+        <div class="catalog-title">CSS知识点</div>
+        <div class="catalog-item active" onclick="switchCata('css','1')">CSS基础</div>
+        <div class="catalog-item" onclick="switchCata('css','2')">选择器</div>
+        <div class="catalog-item" onclick="switchCata('css','3')">盒子模型</div>
+        <div class="catalog-item" onclick="switchCata('css','4')">浮动布局</div>
+        <div class="catalog-item" onclick="switchCata('css','5')">弹性布局</div>
+    </div>
+    <div class="right-content">
+        <div class="content-panel show" id="css-1"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="css-2"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="css-3"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="css-4"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="css-5"><div class="content-empty">知识点待补充</div></div>
+    </div>
+</div>
+
+<div class="main-study-box" id="mysql">
+    <div class="left-catalog">
+        <div class="catalog-title">MySQL知识点</div>
+        <div class="catalog-item active" onclick="switchCata('mysql','1')">数据库基础</div>
+        <div class="catalog-item" onclick="switchCata('mysql','2')">库表操作</div>
+        <div class="catalog-item" onclick="switchCata('mysql','3')">增删改查</div>
+        <div class="catalog-item" onclick="switchCata('mysql','4')">条件查询</div>
+        <div class="catalog-item" onclick="switchCata('mysql','5')">多表查询</div>
+    </div>
+    <div class="right-content">
+        <div class="content-panel show" id="mysql-1"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="mysql-2"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="mysql-3"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="mysql-4"><div class="content-empty">知识点待补充</div></div>
+        <div class="content-panel" id="mysql-5"><div class="content-empty">知识点待补充</div></div>
+    </div>
+</div>
+
+<h2 class="post-section-title">最新交流帖子</h2>
+<div id="postList" class="empty-tip">暂无帖子，点击右上角发布按钮创建第一条帖子</div>
+
+<div class="other-post-area">
+    <h2 class="post-section-title">全部分享帖子</h2>
+    <div id="otherPostList" class="empty-tip">还没有其他用户发布帖子</div>
+</div>
+
+<script>
+    function switchLang(lang){
+        document.querySelectorAll('.lang-nav-btn').forEach(b=>b.classList.remove('active'));
+        event.target.classList.add('active');
+        document.querySelectorAll('.main-study-box').forEach(box=>box.classList.remove('show'));
+        document.getElementById(lang).classList.add('show');
+    }
+    function switchCata(lang,id){
+        document.querySelectorAll(`#${lang} .catalog-item`).forEach(item=>item.classList.remove('active'));
+        event.target.classList.add('active');
+        document.querySelectorAll(`#${lang} .content-panel`).forEach(p=>p.classList.remove('show'));
+        document.getElementById(`${lang}-${id}`).classList.add('show');
+    }
+</script>
+</body>
+</html>

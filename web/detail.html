@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>帖子详情</title>
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;font-family:微软雅黑;}
+        body {background:#f5f7fa;padding:30px;max-width:1000px;margin:0 auto;}
+        .back-btn {
+            display: inline-block;
+            padding: 8px 18px;
+            background:#2563eb;
+            color:#fff;
+            text-decoration:none;
+            border-radius:6px;
+            margin-bottom:30px;
+        }
+        .detail-card {
+            background:#fff;
+            padding:32px 40px;
+            border-radius:8px;
+            box-shadow:0 1px 6px rgba(0,0,0,0.07);
+            border:1px solid #eef1f8;
+        }
+        .detail-title {
+            font-size:26px;
+            color:#151515;
+            font-weight:600;
+            margin-bottom:20px;
+        }
+        .detail-content {
+            color:#3a3a3a;
+            font-size:16px;
+            line-height:1.8;
+            text-indent:2em;
+            text-align:left;
+        }
+    </style>
+</head>
+<body>
+<a href="/" class="back-btn">← 返回首页</a>
+<div class="detail-card">
+    <h1 class="detail-title" id="detailTitle"></h1>
+    <div class="detail-content" id="detailContent"></div>
+</div>
+<script>
+    // 获取地址栏下标 /detail?idx=0
+    const url = new URL(location.href);
+    const idx = url.searchParams.get("idx");
+    // 请求后端接口获取完整帖子
+    fetch(`/getPost?idx=${idx}`)
+        .then(res=>res.json())
+        .then(data=>{
+            document.getElementById("detailTitle").innerText = data.title;
+            document.getElementById("detailContent").innerText = data.content;
+        })
+</script>
+</body>
+</html>

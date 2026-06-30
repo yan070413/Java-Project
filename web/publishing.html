@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>发布新帖子</title>
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;font-family:微软雅黑;}
+        body {background:#f5f7fa;padding:40px;max-width:800px;margin:0 auto;}
+        h1 {text-align:center;color:#222;margin-bottom:30px;}
+        .form-box {background:#fff;padding:30px;border-radius:12px;box-shadow:0 2px 12px #00000008;}
+        .form-item {margin-bottom:20px;}
+        label {display:block;margin-bottom:8px;color:#333;font-size:16px;}
+        input[type="text"], textarea {width:100%;padding:12px;border:1px solid #ccc;border-radius:6px;font-size:15px;}
+        textarea {min-height:180px;resize:vertical;}
+        .btn-group {display:flex;gap:15px;justify-content:center;margin-top:30px;}
+        button {padding:12px 30px;border:none;border-radius:6px;font-size:16px;cursor:pointer;}
+        .btn-submit {background:#2563eb;color:#fff;}
+        .btn-back {background:#ddd;color:#222;}
+        a {text-decoration:none;}
+    </style>
+</head>
+<body>
+<h1>发布编程交流帖子</h1>
+<div class="form-box">
+    <form action="/savePost" method="POST">
+        <div class="form-item">
+            <label>帖子标题</label>
+            <input type="text" name="title" placeholder="输入帖子标题" required>
+        </div>
+        <div class="form-item">
+            <label>帖子正文</label>
+            <textarea name="content" placeholder="分享你的编程学习心得、问题、经验..." required></textarea>
+        </div>
+        <div class="btn-group">
+            <button type="submit" class="btn-submit">提交发布</button>
+            <button type="button" class="btn-back" onclick="location.href='/'">返回首页</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
